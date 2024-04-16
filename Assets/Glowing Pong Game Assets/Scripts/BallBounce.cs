@@ -5,6 +5,7 @@ using UnityEngine;
 public class BallBounce : MonoBehaviour
 {
     public GameObject hitSFX;
+    public GameObject explosion; 
 
     public BallMovement ballMovement;
     public ScoreManager scoreManager;
@@ -40,12 +41,14 @@ public class BallBounce : MonoBehaviour
         else if(collision.gameObject.name == "Right Border")
         {
             scoreManager.Player1Goal();
+            Instantiate(explosion, transform.position, Quaternion.identity);
             ballMovement.player1Start = false;
             StartCoroutine(ballMovement.Launch());
         }
         else if(collision.gameObject.name == "Left Border")
         {
             scoreManager.Player2Goal();
+            Instantiate(explosion, transform.position, Quaternion.identity);
             ballMovement.player1Start = true;
             StartCoroutine(ballMovement.Launch());
         }
